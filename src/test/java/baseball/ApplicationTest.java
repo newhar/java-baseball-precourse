@@ -3,12 +3,27 @@ package baseball;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class ApplicationTest extends NsTest {
+
+    @Test
+    void 게임시작() {
+        GameMachine gameMachine = new GameMachine();
+        gameMachine.play();
+    }
+
+    @Test
+    void 랜덤_넘버_세자리_생성() {
+        GameMachine gameMachine = new GameMachine();
+        Balls threeRandomNumbers = gameMachine.generateThreeRandomNumbers();
+    }
+
     @Test
     void 게임종료_후_재시작() {
         assertRandomNumberInRangeTest(
