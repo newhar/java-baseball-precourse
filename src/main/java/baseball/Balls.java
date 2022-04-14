@@ -15,13 +15,9 @@ public class Balls {
 
     public Balls() {}
 
-    public Balls(List<Ball> balls) {
-        this.balls = balls;
-    }
-
     public Balls(String[] balls) {
         if(balls.length != LENGTH_OF_BALLS ) {
-            throw new IllegalArgumentException(CommonError.OUT_OF_BOUNDS_LENGTH_ERROR.getMessage());
+            throw new IllegalArgumentException(CommonMessage.OUT_OF_BOUNDS_LENGTH_ERROR.getMessage());
         }
 
         for(String s : balls) {
@@ -29,12 +25,8 @@ public class Balls {
         }
     }
 
-    public boolean isMaximumSize() {
-        return balls.size() >= LENGTH_OF_BALLS;
-    }
-
-    public boolean hasContainBall(Ball randomNumberBall) {
-        return balls.contains(randomNumberBall);
+    public void addBall(Ball ball) {
+        balls.add(ball);
     }
 
     public void addBall() {
@@ -46,12 +38,20 @@ public class Balls {
             containBallFlag = hasContainBall(ball);
         }
 
-        System.out.println(ball.ballNumber);
         balls.add(ball);
     }
 
-    public void addBall(Ball ball) {
-        balls.add(ball);
+    public boolean isMaximumSize() {
+        return balls.size() >= LENGTH_OF_BALLS;
+    }
+    public boolean hasContainBall(Ball randomNumberBall) {
+        return balls.contains(randomNumberBall);
+    }
+    public List<Ball> getBalls() {
+        return this.balls;
+    }
+    public Ball getBallAt(int ballIdx) {
+        return this.balls.get(ballIdx);
     }
 
     @Override
@@ -65,13 +65,5 @@ public class Balls {
     @Override
     public int hashCode() {
         return Objects.hash(balls);
-    }
-
-    public List<Ball> getBalls() {
-        return this.balls;
-    }
-
-    public Ball getBallAt(int ballIdx) {
-        return this.balls.get(ballIdx);
     }
 }

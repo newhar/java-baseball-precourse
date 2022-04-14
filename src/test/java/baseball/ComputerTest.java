@@ -4,7 +4,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class ComputerTest {
     private static Computer computer;
@@ -65,7 +64,7 @@ class ComputerTest {
         Balls playerBalls = new Balls(new String[] {"1", "8", "7"});
         player.initBalls(playerBalls);
 
-        assertThat(computer.compareWithPlayerBall(player.getBalls())).isEqualTo("2볼 1스트라이크");
+        assertThat(computer.compareWithPlayerBall(player.getBalls()).getResultMessage()).isEqualTo("2볼 1스트라이크");
     }
 
 }

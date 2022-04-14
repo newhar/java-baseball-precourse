@@ -19,15 +19,6 @@ class GameMachineTest {
     }
 
     @Test
-    void 게임시작() {
-        String input = "123";
-        InputStream in = new ByteArrayInputStream(input.getBytes());
-        System.setIn(in);
-
-        gameMachine.play();
-    }
-
-    @Test
     void 랜덤_넘버_세자리_생성() {
         Balls threeRandomNumbers = gameMachine.generateThreeRandomBalls();
     }

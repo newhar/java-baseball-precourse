@@ -3,12 +3,9 @@ package baseball;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class PlayerTest {
-
-
     private static Player player;
 
     @BeforeEach
@@ -23,6 +20,5 @@ class PlayerTest {
 
         assertThat(player.getBalls()).isEqualTo(balls);
     }
-
 
 }

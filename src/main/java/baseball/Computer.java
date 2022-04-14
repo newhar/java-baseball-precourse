@@ -3,9 +3,8 @@ package baseball;
 public class Computer {
     private static final int SAME = 1;
     private static final int NOT_SAME = 0;
-    private static final int ZERO = 0;
 
-    Balls balls;
+    private Balls balls;
 
     public void initRandomBalls(Balls generateThreeRandomBalls) {
         this.balls = generateThreeRandomBalls;
@@ -29,6 +28,7 @@ public class Computer {
         if( this.balls.hasContainBall(ball) ) {
             return SAME;
         }
+
         return NOT_SAME;
     }
 
@@ -49,29 +49,16 @@ public class Computer {
         if(playerBall.equals(this.balls.getBallAt(ballIdx))) {
             return SAME;
         }
+
         return NOT_SAME;
     }
 
-    public String compareWithPlayerBall(Balls playerBall) {
+    public GameResult compareWithPlayerBall(Balls playerBall) {
         int sameBallCount = getSameBallCountWith(playerBall);
         int strikeCount = getStrikeCountWith(playerBall);
         int ballCount = sameBallCount - strikeCount;
 
-        if(ballCount == ZERO && strikeCount == ZERO) {
-            return ResultStatus.NOTHING.getMessage();
-        }
-
-        String resultMessage = "";
-        if(ballCount > ZERO) {
-            resultMessage += ballCount;
-            resultMessage += ResultStatus.BALL.getMessage();
-        }
-
-        if(strikeCount > ZERO) {
-            resultMessage += strikeCount;
-            resultMessage += ResultStatus.STRIKE.getMessage();
-        }
-
-        return resultMessage;
+        return new GameResult(strikeCount, ballCount);
     }
+
 }

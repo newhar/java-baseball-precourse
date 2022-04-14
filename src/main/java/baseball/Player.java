@@ -1,7 +1,7 @@
 package baseball;
 
 public class Player {
-    Balls balls;
+    private Balls balls;
 
     public void initBalls(Balls balls) {
         this.balls = balls;

@@ -4,21 +4,16 @@ import java.util.Objects;
 
 public class Ball {
     private static final int BALL_INDEX = 0;
-    private static final int MAXIMUM_BALL_DIGIT = 1;
 
-    public int ballNumber;
+    private int ballNumber;
 
     public Ball(int num) {
         this.ballNumber = num;
     }
 
     public Ball(String num) {
-        if (num.length() > MAXIMUM_BALL_DIGIT) {
-            throw new IllegalArgumentException(CommonError.OUT_OF_BOUNDS_LENGTH_ERROR.getMessage());
-        }
-
         if (!Character.isDigit(num.charAt(BALL_INDEX))) {
-            throw new IllegalArgumentException(CommonError.NOT_NUMBER_ERROR.getMessage());
+            throw new IllegalArgumentException(CommonMessage.NOT_NUMBER_ERROR.getMessage());
         }
 
         this.ballNumber = Integer.parseInt(num);
