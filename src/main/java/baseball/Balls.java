@@ -11,7 +11,7 @@ public class Balls {
     private static final int MIN_RANGE_OF_BALL = 1;
     private static final int MAX_RANGE_OF_BALL = 9;
 
-    List<Ball> balls = new ArrayList<>();
+    private List<Ball> balls = new ArrayList<>();
 
     public Balls() {}
 
@@ -65,5 +65,9 @@ public class Balls {
     @Override
     public int hashCode() {
         return Objects.hash(balls);
+    }
+
+    public List<Ball> getBalls() {
+        return this.balls;
     }
 }
