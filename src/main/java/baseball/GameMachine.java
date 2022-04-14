@@ -19,8 +19,14 @@ public class GameMachine {
     public void play() {
         boolean continueGameFlag = true;
         this.computer.initRandomBalls(generateThreeRandomBalls());
+
         this.player.initBalls(getPlayerInput());
+
+        String gameResult = this.computer.compareWithPlayerBall(this.player.getBalls());
+        System.out.println(gameResult);
     }
+
+
 
 
     public Balls generateThreeRandomBalls() {

@@ -3,6 +3,7 @@ package baseball;
 public class Computer {
     private static final int SAME = 1;
     private static final int NOT_SAME = 0;
+    private static final int ZERO = 0;
 
     Balls balls;
 
@@ -48,5 +49,28 @@ public class Computer {
             return SAME;
         }
         return NOT_SAME;
+    }
+
+    public String compareWithPlayerBall(Balls playerBall) {
+        int sameBallCount = getSameBallCountWith(playerBall);
+        int strikeCount = getStrikeCountWith(playerBall);
+        int ballCount = sameBallCount - strikeCount;
+
+        if(ballCount == ZERO && strikeCount == ZERO) {
+            return ResultStatus.NOTHING.getMessage();
+        }
+
+        String resultMessage = "";
+        if(ballCount > ZERO) {
+            resultMessage += ballCount;
+            resultMessage += ResultStatus.BALL.getMessage();
+        }
+
+        if(strikeCount > ZERO) {
+            resultMessage += strikeCount;
+            resultMessage += ResultStatus.STRIKE.getMessage();
+        }
+
+        return resultMessage;
     }
 }

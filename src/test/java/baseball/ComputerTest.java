@@ -39,4 +39,33 @@ class ComputerTest {
         int strikeCnt = computer.getStrikeCountWith(player.getBalls());
         assertThat(strikeCnt).isEqualTo(1);
     }
+
+    @Test
+    void 볼_개수_확인_테스트() {
+        Balls balls = new Balls(new String[] {"1", "2", "3"});
+        computer.initBalls(balls);
+
+        Balls playerBalls = new Balls(new String[] {"4", "2", "1"});
+        player.initBalls(playerBalls);
+
+        int sameBallCnt = computer.getSameBallCountWith(player.getBalls());
+        int strikeCnt = computer.getStrikeCountWith(player.getBalls());
+        int ballCnt = sameBallCnt - strikeCnt;
+
+        assertThat(sameBallCnt).isEqualTo(2);
+        assertThat(ballCnt).isEqualTo(1);
+        assertThat(strikeCnt).isEqualTo(1);
+    }
+
+    @Test
+    void 컴퓨터_플레이어_볼비교_테스트() {
+        Balls balls = new Balls(new String[] {"7", "8", "1"});
+        computer.initBalls(balls);
+
+        Balls playerBalls = new Balls(new String[] {"1", "8", "7"});
+        player.initBalls(playerBalls);
+
+        assertThat(computer.compareWithPlayerBall(player.getBalls())).isEqualTo("2볼 1스트라이크");
+    }
+
 }
