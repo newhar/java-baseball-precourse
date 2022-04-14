@@ -3,15 +3,11 @@ package baseball;
 import camp.nextstep.edu.missionutils.Console;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class GameMachineTest {
@@ -24,7 +20,7 @@ class GameMachineTest {
 
     @Test
     void 게임시작() {
-        String input = "1 2 3";
+        String input = "123";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
 
@@ -38,7 +34,7 @@ class GameMachineTest {
 
     @Test
     void 숫자를_입력받는다() {
-        String input = "1 2 3";
+        String input = "123";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
 
@@ -55,7 +51,7 @@ class GameMachineTest {
 
     @Test
     void 예외테스트_문자를_입력받는다() {
-        String input = "a b c";
+        String input = "abc";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
 
@@ -66,8 +62,8 @@ class GameMachineTest {
     }
 
     @Test
-    void 예외테스트_한자리_이상의_숫자를_입력받는다() {
-        String input = "1 12 31";
+    void 예외테스트_세자리_이상의_숫자를_입력받는다() {
+        String input = "11231";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
 
@@ -86,16 +82,16 @@ class GameMachineTest {
         assertThatThrownBy(() -> {
             gameMachine.getPlayerInput();
         }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("세 개의 숫자를 띄어쓰기로 구분하여 입력해주세요.");
+                .hasMessageContaining("지정된 길이를 벗어난 입력입니다.");
     }
 
     @Test
     void 입력받고_출력() {
-        String input = "1 2 3";
+        String input = "123";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
         String s = Console.readLine();
         System.out.println(s);
-        assertThat(s).isEqualTo("1 2 3");
+        assertThat(s).isEqualTo("123");
     }
 }
