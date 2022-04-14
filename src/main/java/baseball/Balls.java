@@ -20,7 +20,6 @@ public class Balls {
     }
 
     public Balls(String[] balls) {
-
         if(balls.length < MAX_EA_OF_BALLS) {
             throw new IllegalArgumentException(CommonError.UNDER_THAN_MAXIMUM_EA_BALLS_ERROR.getMessage());
         }
@@ -69,5 +68,9 @@ public class Balls {
 
     public List<Ball> getBalls() {
         return this.balls;
+    }
+
+    public Ball getBallAt(int ballIdx) {
+        return this.balls.get(ballIdx);
     }
 }

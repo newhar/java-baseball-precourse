@@ -28,4 +28,15 @@ class ComputerTest {
         assertThat(sameBallCnt).isEqualTo(2);
     }
 
+    @Test
+    void 스트라이크_갯수_확인_테스트() {
+        Balls balls = new Balls(new String[] {"1", "2", "3"});
+        computer.initBalls(balls);
+
+        Balls playerBalls = new Balls(new String[] {"4", "2", "1"});
+        player.initBalls(playerBalls);
+
+        int strikeCnt = computer.getStrikeCountWith(player.getBalls());
+        assertThat(strikeCnt).isEqualTo(1);
+    }
 }

@@ -6,7 +6,7 @@ public class Ball {
     private static final int BALL_INDEX = 0;
     private static final int MAXIMUM_BALL_DIGIT = 1;
 
-    int ballNumber;
+    public int ballNumber;
 
     public Ball(int num) {
         this.ballNumber = num;

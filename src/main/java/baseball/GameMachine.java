@@ -18,12 +18,12 @@ public class GameMachine {
 
     public void play() {
         boolean continueGameFlag = true;
-        this.computer.initRandomBalls(generateThreeRandomNumbers());
+        this.computer.initRandomBalls(generateThreeRandomBalls());
         this.player.initBalls(getPlayerInput());
     }
 
 
-    public Balls generateThreeRandomNumbers() {
+    public Balls generateThreeRandomBalls() {
         Balls randomNumberBalls = new Balls();
 
         while (!randomNumberBalls.isMaximumSize()) {

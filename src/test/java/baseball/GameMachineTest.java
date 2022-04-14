@@ -33,7 +33,7 @@ class GameMachineTest {
 
     @Test
     void 랜덤_넘버_세자리_생성() {
-        Balls threeRandomNumbers = gameMachine.generateThreeRandomNumbers();
+        Balls threeRandomNumbers = gameMachine.generateThreeRandomBalls();
     }
 
     @Test
