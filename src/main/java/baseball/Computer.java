@@ -39,6 +39,7 @@ public class Computer {
 
         for(Ball playerBall : playerBalls.getBalls()) {
             strikeCnt += checkStrikeAtWith(ballIdx, playerBall);
+            ballIdx += 1;
         }
 
         return strikeCnt;

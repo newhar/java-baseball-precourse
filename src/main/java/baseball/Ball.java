@@ -14,7 +14,7 @@ public class Ball {
 
     public Ball(String num) {
         if (num.length() > MAXIMUM_BALL_DIGIT) {
-            throw new IllegalArgumentException(CommonError.OVER_MAXIMUM_BALL_DIGIT_ERROR.getMessage());
+            throw new IllegalArgumentException(CommonError.OUT_OF_BOUNDS_LENGTH_ERROR.getMessage());
         }
 
         if (!Character.isDigit(num.charAt(BALL_INDEX))) {

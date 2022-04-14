@@ -46,6 +46,7 @@ public class Balls {
             containBallFlag = hasContainBall(ball);
         }
 
+        System.out.println(ball.ballNumber);
         balls.add(ball);
     }
 

@@ -74,7 +74,7 @@ class GameMachineTest {
         assertThatThrownBy(() -> {
             gameMachine.getPlayerInput();
         }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("한자리의 숫자만 올 수 있습니다.");
+                .hasMessageContaining("지정된 길이를 벗어난 입력입니다.");
     }
 
     @Test
