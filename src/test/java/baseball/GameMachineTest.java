@@ -54,6 +54,42 @@ class GameMachineTest {
     }
 
     @Test
+    void 예외테스트_문자를_입력받는다() {
+        String input = "a b c";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+
+        assertThatThrownBy(() -> {
+            gameMachine.getPlayerInput();
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("숫자만 입력할 수 있습니다.");
+    }
+
+    @Test
+    void 예외테스트_한자리_이상의_숫자를_입력받는다() {
+        String input = "1 12 31";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+
+        assertThatThrownBy(() -> {
+            gameMachine.getPlayerInput();
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("한자리의 숫자만 올 수 있습니다.");
+    }
+
+    @Test
+    void 단일_숫자_입력받는다() {
+        String input = "1";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+
+        assertThatThrownBy(() -> {
+            gameMachine.getPlayerInput();
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("세 개의 숫자를 띄어쓰기로 구분하여 입력해주세요.");
+    }
+
+    @Test
     void 입력받고_출력() {
         String input = "1 2 3";
         InputStream in = new ByteArrayInputStream(input.getBytes());

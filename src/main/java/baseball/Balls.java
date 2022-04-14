@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class Balls {
-    private static final int MAX_LEN_OF_BALLS = 3;
+    private static final int MAX_EA_OF_BALLS = 3;
     private static final int MIN_RANGE_OF_BALL = 1;
     private static final int MAX_RANGE_OF_BALL = 9;
 
@@ -21,13 +21,17 @@ public class Balls {
 
     public Balls(String[] balls) {
 
+        if(balls.length < MAX_EA_OF_BALLS) {
+            throw new IllegalArgumentException(CommonError.UNDER_THAN_MAXIMUM_EA_BALLS_ERROR.getMessage());
+        }
+
         for(String s : balls) {
             this.balls.add(new Ball(s));
         }
     }
 
     public boolean isMaximumSize() {
-        return balls.size() >= MAX_LEN_OF_BALLS;
+        return balls.size() >= MAX_EA_OF_BALLS;
     }
 
     public boolean hasContainBall(Ball randomNumberBall) {

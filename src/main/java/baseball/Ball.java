@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Ball {
     private static final int BALL_INDEX = 0;
-    private static final int MAXIMUM_BALL_NUMBER_RANGE = 1;
+    private static final int MAXIMUM_BALL_DIGIT = 1;
 
     int ballNumber;
 
@@ -13,6 +13,14 @@ public class Ball {
     }
 
     public Ball(String num) {
+        if (num.length() > MAXIMUM_BALL_DIGIT) {
+            throw new IllegalArgumentException(CommonError.OVER_MAXIMUM_BALL_DIGIT_ERROR.getMessage());
+        }
+
+        if (!Character.isDigit(num.charAt(BALL_INDEX))) {
+            throw new IllegalArgumentException(CommonError.NOT_NUMBER_ERROR.getMessage());
+        }
+
         this.ballNumber = Integer.parseInt(num);
     }
 
