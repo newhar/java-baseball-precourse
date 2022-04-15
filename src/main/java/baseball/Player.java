@@ -1,6 +1,6 @@
 package baseball;
 
-public class Player {
+public final class Player {
     private Balls balls;
 
     public void initBalls(Balls balls) {

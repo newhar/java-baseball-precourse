@@ -1,18 +1,7 @@
 package baseball;
 
-public enum ResultStatus {
-    STRIKE("스트라이크"),
-    BALL("볼 "),
-    NOTHING("낫싱");
-
-    private final String message;
-
-    ResultStatus(String message) {
-        this.message = message;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
+public final class ResultStatus {
+    static String STRIKE = "스트라이크";
+    static String BALL = "볼 ";
+    static String NOTHING = "낫싱";
 }

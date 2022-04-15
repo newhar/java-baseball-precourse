@@ -2,9 +2,9 @@ package baseball;
 
 import camp.nextstep.edu.missionutils.Console;
 
-public class GameMachine {
-    private Computer computer;
-    private Player player;
+public final class GameMachine {
+    private final Computer computer;
+    private final Player player;
 
     public GameMachine() {
         this.computer = new Computer();
@@ -22,15 +22,6 @@ public class GameMachine {
         return askReplay();
     }
 
-    private boolean guess() {
-        player.initBalls(getPlayerInput());
-        GameResult gameResult = computer.compareWithPlayerBall(player.getBalls());
-
-        System.out.println(gameResult.getResultMessage());
-
-        return gameResult.checkGameOver();
-    }
-
     public Balls generateThreeRandomBalls() {
         Balls randomNumberBalls = new Balls();
 
@@ -42,22 +33,27 @@ public class GameMachine {
     }
 
     public Balls getPlayerInput() {
-        System.out.print(CommonMessage.GET_USER_INPUT.getMessage());
+        System.out.print(CommonMessage.GET_USER_INPUT);
         String playerInput = Console.readLine();
 
         return new Balls(playerInput.split(""));
     }
 
+    private boolean guess() {
+        player.initBalls(getPlayerInput());
+        GameResult gameResult = computer.compareWithPlayerBall(player.getBalls());
+
+        System.out.println(gameResult.getResultMessage());
+
+        return gameResult.checkGameOver();
+    }
+
     private boolean askReplay() {
-        System.out.println(CommonMessage.GAME_OVER.getMessage());
-        System.out.print(CommonMessage.ASK_REPLAY.getMessage());
+        System.out.println(CommonMessage.GAME_OVER);
+        System.out.print(CommonMessage.ASK_REPLAY);
         ReplayAnswer answer = new ReplayAnswer(Console.readLine());
 
-        if(answer.isReplay()) {
-          return true;
-        }
-
-        return false;
+        return answer.isReplay();
     }
 }
 

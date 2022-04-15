@@ -1,6 +1,6 @@
 package baseball;
 
-public class Computer {
+public final class Computer {
     private static final int SAME = 1;
     private static final int NOT_SAME = 0;
 
@@ -14,7 +14,15 @@ public class Computer {
         this.balls = balls;
     }
 
-    public int getSameBallCountWith(Balls playerBalls) {
+    public GameResult compareWithPlayerBall(Balls playerBall) {
+        int sameBallCount = getSameBallCountWith(playerBall);
+        int strikeCount = getStrikeCountWith(playerBall);
+        int ballCount = sameBallCount - strikeCount;
+
+        return new GameResult(strikeCount, ballCount);
+    }
+
+    private int getSameBallCountWith(Balls playerBalls) {
         int sameBallCnt = 0;
 
         for (Ball playerBall : playerBalls.getBalls()) {
@@ -33,7 +41,7 @@ public class Computer {
     }
 
 
-    public int getStrikeCountWith(Balls playerBalls) {
+    private int getStrikeCountWith(Balls playerBalls) {
         int strikeCnt = 0;
         int ballIdx = 0;
 
@@ -51,14 +59,6 @@ public class Computer {
         }
 
         return NOT_SAME;
-    }
-
-    public GameResult compareWithPlayerBall(Balls playerBall) {
-        int sameBallCount = getSameBallCountWith(playerBall);
-        int strikeCount = getStrikeCountWith(playerBall);
-        int ballCount = sameBallCount - strikeCount;
-
-        return new GameResult(strikeCount, ballCount);
     }
 
 }
