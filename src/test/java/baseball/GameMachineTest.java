@@ -21,6 +21,8 @@ class GameMachineTest {
     @Test
     void 랜덤_넘버_세자리_생성() {
         Balls threeRandomNumbers = gameMachine.generateThreeRandomBalls();
+
+        assertThat(threeRandomNumbers).isInstanceOf(Balls.class);
     }
 
     @Test
@@ -30,14 +32,12 @@ class GameMachineTest {
         System.setIn(in);
 
         Balls playerInputBalls = gameMachine.getPlayerInput();
-        assertThat(playerInputBalls).isInstanceOf(Balls.class);
-
         Balls tempBalls = new Balls();
         tempBalls.addBall(new Ball(1));
         tempBalls.addBall(new Ball(2));
         tempBalls.addBall(new Ball(3));
 
-        assertThat(playerInputBalls).isEqualTo(tempBalls);
+        assertThat(playerInputBalls).isInstanceOf(Balls.class).isEqualTo(tempBalls);
     }
 
     @Test
@@ -77,12 +77,11 @@ class GameMachineTest {
     }
 
     @Test
-    void 입력받고_출력() {
+    void InputStream_setIn_연습() {
         String input = "123";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
         String s = Console.readLine();
-        System.out.println(s);
         assertThat(s).isEqualTo("123");
     }
 }

@@ -1,7 +1,11 @@
 package baseball;
 
+import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -16,45 +20,36 @@ class ComputerTest {
     }
 
     @Test
-    void 동일한_야구공_숫자_갯수_확인_테스트() {
+    void 동일한_야구공_숫자_갯수_확인_테스트() throws Exception {
         Balls balls = new Balls(new String[] {"1", "2", "3"});
         computer.initBalls(balls);
 
         Balls playerBalls = new Balls(new String[] {"4", "3", "1"});
         player.initBalls(playerBalls);
 
-        int sameBallCnt = computer.getSameBallCountWith(player.getBalls());
+        Method method = computer.getClass().getDeclaredMethod("getSameBallCountWith", Balls.class);
+        method.setAccessible(true);
+
+        int sameBallCnt = (int)method.invoke(computer, player.getBalls());
         assertThat(sameBallCnt).isEqualTo(2);
     }
 
     @Test
-    void 스트라이크_갯수_확인_테스트() {
+    void 스트라이크_갯수_확인_테스트() throws Exception {
         Balls balls = new Balls(new String[] {"1", "2", "3"});
         computer.initBalls(balls);
 
         Balls playerBalls = new Balls(new String[] {"4", "2", "1"});
         player.initBalls(playerBalls);
 
-        int strikeCnt = computer.getStrikeCountWith(player.getBalls());
+        Method method = computer.getClass().getDeclaredMethod("getStrikeCountWith", Balls.class);
+        method.setAccessible(true);
+
+        int strikeCnt = (int)method.invoke(computer, player.getBalls());
+
         assertThat(strikeCnt).isEqualTo(1);
     }
 
-    @Test
-    void 볼_개수_확인_테스트() {
-        Balls balls = new Balls(new String[] {"1", "2", "3"});
-        computer.initBalls(balls);
-
-        Balls playerBalls = new Balls(new String[] {"4", "2", "1"});
-        player.initBalls(playerBalls);
-
-        int sameBallCnt = computer.getSameBallCountWith(player.getBalls());
-        int strikeCnt = computer.getStrikeCountWith(player.getBalls());
-        int ballCnt = sameBallCnt - strikeCnt;
-
-        assertThat(sameBallCnt).isEqualTo(2);
-        assertThat(ballCnt).isEqualTo(1);
-        assertThat(strikeCnt).isEqualTo(1);
-    }
 
     @Test
     void 컴퓨터_플레이어_볼비교_테스트() {
