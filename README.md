@@ -17,21 +17,23 @@
 * 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException을 발생시킨 후 애플리케이션은 종료되어야 한다.
 
 ## 구현 기능 목록
-* 숫자야구 게임기
-  * 게임 시작
-    * 랜덤 넘버 생성 : 서로 다른 세자리의 숫자 생성한다.
-    * game over 여부 판단
-    * game over 일때, 종료/재시작 여부 확인
+* 숫자야구 게임기 (GameMachine)
+  * 게임 시작 (GameMachine.play())
+    * 랜덤 넘버 생성 : 서로 다른 세자리의 숫자 생성한다. (GameMachine.generateThreeRandomBalls())
+    * 입력 처리 : 서로 다른 숫자의 야구공 세개를 입력받는다. (GameMachine.getPlayerInput())
+    * game over 여부 판단 (GameResult.checkGameOver())
+    * game over 일때, 종료/재시작 여부 확인 (ReplayAnswer.isReplay())
   * 게임 종료
-* 컴퓨터
-  * 컴퓨터-플레이어 야구공 비교 
+* 컴퓨터 (Computer)
+  * 컴퓨터-플레이어 야구공 비교 (Computer.compareWithPlayerBall)
     * 자신이 가진 랜덤으로 생성된 야구공들과 플에이어의 비교하여 그 결과를 스트라이크와 볼의 갯수로 나타낸다.
     * 그러기 위해서는 우선 몇 개의 야구공의 숫자가 동일한지 알아야한다.
     * 동일한 숫자의 야구공이 있다면 위치까지 동일한 것이 몇개인지 알아야 한다.
     * 볼의 갯수 = 동일한 숫자의 야구공 개수 - 스트라이크 개수
-* 플레이어
-  * 사용자 입력 : 서로 다른 숫자의 야구공 세개를 입력받는다.
-* 야구공 
+* 플레이어 (Player)
+  * 야구공을 저장한다. (Player.initBalls())
+  * 현재 가지고있는 야구공을 조회한다. (Player.getBalls())
+* 야구공 (Balls, Ball)
   * 유효성 검증
     * 3 자리여야 한다.
     * 숫자만 올 수 있다.
